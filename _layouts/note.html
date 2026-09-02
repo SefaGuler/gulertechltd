@@ -1,0 +1,27 @@
+---
+layout: default
+---
+{% assign cat = site.collections | where: "label", page.category | first %}
+<main class="wrap">
+  <article class="note">
+    <header class="note-header">
+      <div class="kicker"><a href="{{ '/' | append: page.category | append: '/' | relative_url }}">{{ cat.title }}</a></div>
+      <h1>{{ page.title }}</h1>
+      <div class="note-meta">
+        {% if page.date %}<span>{{ page.date | date: "%Y-%m-%d" }}</span>{% endif %}
+        {% if page.severity %}<span class="sev sev-{{ page.severity | downcase }}">{{ page.severity }}</span>{% endif %}
+        {% if page.refs %}<span>{{ page.refs | join: " · " }}</span>{% endif %}
+        {% if page.cvss %}<span>CVSS {{ page.cvss }}</span>{% endif %}
+      </div>
+      {% if page.tags and page.tags != empty %}
+      <div class="tags">{% for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+      {% endif %}
+    </header>
+
+    <div class="note-body">
+      {{ content }}
+    </div>
+
+    <a class="back-link" href="{{ '/' | append: page.category | append: '/' | relative_url }}">Back to {{ cat.title }}</a>
+  </article>
+</main>

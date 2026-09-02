@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }} — {{ site.tagline }}{% endif %}</title>
+<meta name="description" content="{{ page.summary | default: page.description | default: site.description | strip_newlines | truncate: 160 }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:title" content="{{ page.title | default: site.title }}">
+<meta property="og:description" content="{{ page.summary | default: site.description | strip_newlines | truncate: 160 }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:type" content="{% if page.layout == 'note' %}article{% else %}website{% endif %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+</head>
+<body>
+  <div class="grid-overlay"></div>
+
+  <header class="site">
+    <div class="wrap">
+      <a class="brand" href="{{ '/' | relative_url }}"><span class="prompt">root@gulertech:~$</span> {{ site.title | upcase }}</a>
+      <nav class="site-nav">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        {% for key in site.category_order %}{% assign c = site.collections | where: "label", key | first %}<a href="{{ '/' | append: key | append: '/' | relative_url }}">{{ c.title }}</a>
+        {% endfor %}
+        <a href="{{ '/about/' | relative_url }}">About</a>
+      </nav>
+    </div>
+  </header>
+
+  {{ content }}
+
+  <footer class="site">
+    <div class="wrap">
+      <span>&copy; {{ site.time | date: "%Y" }} {{ site.title }} &middot; Registered in England &amp; Wales</span>
+      <span><a href="mailto:{{ site.email }}">{{ site.email }}</a> &middot; <a href="{{ '/feed.xml' | relative_url }}">RSS</a></span>
+    </div>
+  </footer>
+</body>
+</html>

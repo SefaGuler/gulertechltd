@@ -1,210 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guler Tech Ltd</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #10151B;
-    --surface: #171E26;
-    --line: #26313D;
-    --text: #E7ECEF;
-    --text-muted: #8B99A6;
-    --accent: #C9A227;
-    --accent-dim: #7A6420;
-    --radius: 3px;
-  }
-
-  * { box-sizing: border-box; }
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    min-height: 100vh;
-  }
-
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100vh;
-  }
-
-  .grid-overlay {
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 48px 48px;
-    opacity: 0.25;
-    pointer-events: none;
-  }
-
-  header {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 28px 40px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.6);
-    animation: pulse 2.4s ease-out infinite;
-  }
-
-  @keyframes pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.55); }
-    70%  { box-shadow: 0 0 0 10px rgba(201, 162, 39, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0); }
-  }
-
-  main {
-    position: relative;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 24px;
-    text-align: center;
-  }
-
-  .content {
-    max-width: 620px;
-  }
-
-  .eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 22px;
-  }
-
-  h1 {
-    font-size: clamp(2.4rem, 6vw, 4rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-    margin: 0 0 22px;
-  }
-
-  h1 span {
-    color: var(--accent);
-  }
-
-  p.lede {
-    font-size: 1.05rem;
-    line-height: 1.65;
-    color: var(--text-muted);
-    max-width: 480px;
-    margin: 0 auto 40px;
-  }
-
-  .divider {
-    width: 40px;
-    height: 2px;
-    background: var(--accent-dim);
-    margin: 0 auto 40px;
-  }
-
-  .contact {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--text);
-    text-decoration: none;
-    border: 1px solid var(--line);
-    padding: 12px 22px;
-    border-radius: var(--radius);
-    transition: border-color 0.2s ease, color 0.2s ease;
-  }
-
-  .contact:hover,
-  .contact:focus-visible {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  .contact:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-
-  footer {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 40px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-    border-top: 1px solid var(--line);
-  }
-
-  @media (max-width: 560px) {
-    header, footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
-    main { padding: 40px 20px; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .dot { animation: none; }
-  }
-</style>
-</head>
-<body>
-  <div class="grid-overlay"></div>
-
-  <header>
-    <span>GULER TECH LTD // UNITED KINGDOM</span>
-    <span class="status"><span class="dot"></span> SYSTEMS ONLINE</span>
-  </header>
-
-  <main>
-    <div class="content">
-      <div class="eyebrow">Application &amp; Infrastructure Security</div>
-      <h1>Guler Tech<span>.</span></h1>
-      <p class="lede">
-        Offensive security services — web, mobile, and API penetration testing
-        for teams that need to know exactly where they stand before an attacker does.
-        Full site launching soon.
-      </p>
-      <div class="divider"></div>
-      <a class="contact" href="mailto:info@gulertech.co.uk">info@gulertech.co.uk →</a>
+---
+layout: default
+---
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Application &amp; Infrastructure Security</div>
+    <h1>Guler Tech<span class="cursor">_</span></h1>
+    <p class="lede">
+      Offensive security research and field notes — web, mobile, API, network and cloud
+      penetration testing. Written from real engagements and lab work, published when
+      they're worth sharing.
+    </p>
+    <div class="meta">
+      <span><span class="dot"></span>SYSTEMS ONLINE</span>
+      <span>UNITED KINGDOM</span>
+      {% assign total = 0 %}{% for key in site.category_order %}{% assign total = total | plus: site[key].size %}{% endfor %}
+      <span>{{ total }} NOTES</span>
     </div>
-  </main>
+  </section>
 
-  <footer>
-    <span>© 2026 Guler Tech Ltd</span>
-    <span>Registered in England &amp; Wales</span>
-  </footer>
-</body>
-</html>
+  <div class="section-head">Categories</div>
+  <div class="cat-grid">
+    {% for key in site.category_order %}
+    {% assign c = site.collections | where: "label", key | first %}
+    {% assign count = site[key] | size %}
+    <a class="cat-card" href="{{ '/' | append: key | append: '/' | relative_url }}">
+      <div class="icon">{{ c.icon }}</div>
+      <h3>{{ c.title }}</h3>
+      <p>{{ c.blurb }}</p>
+      <span class="count">{{ count }} NOTE{% if count != 1 %}S{% endif %} &rarr;</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% assign all = "" | split: "" %}
+  {% for key in site.category_order %}{% assign all = all | concat: site[key] %}{% endfor %}
+  {% assign recent = all | sort: "date" | reverse | slice: 0, 8 %}
+  <div class="section-head">Latest</div>
+  {% include note-list.html notes=recent %}
+</main>

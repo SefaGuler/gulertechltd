@@ -1,0 +1,19 @@
+{% if include.notes.size > 0 %}
+<ul class="note-list">
+  {% for n in include.notes %}
+  <li>
+    <a class="note-item" href="{{ n.url | relative_url }}">
+      <span class="date">{{ n.date | date: "%Y-%m-%d" }}</span>
+      <span class="body">
+        <h3>{{ n.title }}</h3>
+        {% if n.summary %}<p>{{ n.summary }}</p>{% endif %}
+        {% if n.tags and n.tags != empty %}<span class="tags">{% for t in n.tags limit: 5 %}<span class="tag">{{ t }}</span>{% endfor %}</span>{% endif %}
+      </span>
+      {% if n.severity %}<span class="sev sev-{{ n.severity | downcase }}">{{ n.severity }}</span>{% endif %}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="empty">// no notes published yet</div>
+{% endif %}

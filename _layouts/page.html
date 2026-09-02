@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<main class="wrap">
+  <article class="note">
+    <header class="note-header">
+      <div class="kicker">{{ page.kicker | default: "Page" }}</div>
+      <h1>{{ page.title }}</h1>
+    </header>
+    <div class="note-body">
+      {{ content }}
+    </div>
+  </article>
+</main>

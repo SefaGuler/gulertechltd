@@ -1,0 +1,113 @@
+title: Guler Tech Ltd
+tagline: Offensive Security Research & Notes
+description: >-
+  Penetration testing notes and research by Guler Tech Ltd — web, mobile, API,
+  network/AD, cloud and privilege-escalation writeups from real engagements and lab work.
+author: Guler Tech Ltd
+email: info@gulertech.co.uk
+url: "https://gulertech.co.uk"
+lang: en
+
+# Build
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+
+permalink: /:collection/:name/
+timezone: Europe/London
+
+# Collections = note categories
+collections:
+  web:
+    output: true
+    title: Web Application
+    icon: "&#60;/&#62;"
+    blurb: "XSS, SQLi, SSRF, XXE, SSTI, IDOR, auth & session, request smuggling, business logic."
+  mobile:
+    output: true
+    title: Mobile Application
+    icon: "&#9633;"
+    blurb: "iOS & Android — static/dynamic analysis, Frida/Objection, SSL pinning & root/jailbreak bypass."
+  api:
+    output: true
+    title: API & GraphQL
+    icon: "{ }"
+    blurb: "Introspection, authz gaps, mass assignment, JWT attacks, rate-limit bypass."
+  network:
+    output: true
+    title: Network & AD
+    icon: "&#8644;"
+    blurb: "Active Directory, lateral movement, impacket, Kerberos, relay & coercion."
+  cloud:
+    output: true
+    title: Cloud
+    icon: "&#9729;"
+    blurb: "AWS / Azure / GCP misconfigurations, IAM escalation, metadata & storage."
+  privesc:
+    output: true
+    title: Privilege Escalation
+    icon: "#"
+    blurb: "Linux & Windows local privesc — sudo, LD_PRELOAD, library hijacking, service abuse."
+  cve:
+    output: true
+    title: CVE & Writeups
+    icon: "!"
+    blurb: "CVE analysis, full attack-chain walkthroughs and lab/box writeups."
+
+# Order categories appear on the homepage
+category_order: [web, mobile, api, network, cloud, privesc, cve]
+
+defaults:
+  - scope:
+      path: ""
+      type: web
+    values:
+      layout: note
+      category: web
+  - scope:
+      path: ""
+      type: mobile
+    values:
+      layout: note
+      category: mobile
+  - scope:
+      path: ""
+      type: api
+    values:
+      layout: note
+      category: api
+  - scope:
+      path: ""
+      type: network
+    values:
+      layout: note
+      category: network
+  - scope:
+      path: ""
+      type: cloud
+    values:
+      layout: note
+      category: cloud
+  - scope:
+      path: ""
+      type: privesc
+    values:
+      layout: note
+      category: privesc
+  - scope:
+      path: ""
+      type: cve
+    values:
+      layout: note
+      category: cve
+
+exclude:
+  - README.md
+  - publish.sh
+  - Gemfile
+  - Gemfile.lock
+  - vendor

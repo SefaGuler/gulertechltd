@@ -1,0 +1,18 @@
+---
+layout: default
+---
+{% assign cat = site.collections | where: "label", page.collection_key | first %}
+{% assign notes = site[page.collection_key] | sort: "date" | reverse %}
+<main class="wrap">
+  <section class="hero" style="padding-bottom:16px;">
+    <div class="eyebrow">{{ cat.icon }} &nbsp; Category</div>
+    <h1>{{ cat.title }}<span class="cursor">_</span></h1>
+    <p class="lede">{{ page.description | default: cat.blurb }}</p>
+    <div class="meta"><span>{{ notes | size }} note{% if notes.size != 1 %}s{% endif %}</span></div>
+  </section>
+
+  <div class="section-head">Notes</div>
+  {% include note-list.html notes=notes %}
+
+  {{ content }}
+</main>
