@@ -1,8 +1,8 @@
 title: Guler Tech Ltd
 tagline: Offensive Security Research & Notes
 description: >-
-  Penetration testing notes and research by Guler Tech Ltd — web, mobile, API,
-  network/AD, cloud and privilege-escalation writeups from real engagements and lab work.
+  Penetration testing notes and research by Guler Tech Ltd — web and mobile
+  application security writeups from real engagements and lab work.
 author: Guler Tech Ltd
 email: info@gulertech.co.uk
 url: "https://gulertech.co.uk"
@@ -32,34 +32,9 @@ collections:
     title: Mobile Application
     icon: "&#9633;"
     blurb: "iOS & Android — static/dynamic analysis, Frida/Objection, SSL pinning & root/jailbreak bypass."
-  api:
-    output: true
-    title: API & GraphQL
-    icon: "{ }"
-    blurb: "Introspection, authz gaps, mass assignment, JWT attacks, rate-limit bypass."
-  network:
-    output: true
-    title: Network & AD
-    icon: "&#8644;"
-    blurb: "Active Directory, lateral movement, impacket, Kerberos, relay & coercion."
-  cloud:
-    output: true
-    title: Cloud
-    icon: "&#9729;"
-    blurb: "AWS / Azure / GCP misconfigurations, IAM escalation, metadata & storage."
-  privesc:
-    output: true
-    title: Privilege Escalation
-    icon: "#"
-    blurb: "Linux & Windows local privesc — sudo, LD_PRELOAD, library hijacking, service abuse."
-  cve:
-    output: true
-    title: CVE & Writeups
-    icon: "!"
-    blurb: "CVE analysis, full attack-chain walkthroughs and lab/box writeups."
 
 # Order categories appear on the homepage
-category_order: [web, mobile, api, network, cloud, privesc, cve]
+category_order: [web, mobile]
 
 defaults:
   - scope:
@@ -74,36 +49,6 @@ defaults:
     values:
       layout: note
       category: mobile
-  - scope:
-      path: ""
-      type: api
-    values:
-      layout: note
-      category: api
-  - scope:
-      path: ""
-      type: network
-    values:
-      layout: note
-      category: network
-  - scope:
-      path: ""
-      type: cloud
-    values:
-      layout: note
-      category: cloud
-  - scope:
-      path: ""
-      type: privesc
-    values:
-      layout: note
-      category: privesc
-  - scope:
-      path: ""
-      type: cve
-    values:
-      layout: note
-      category: cve
 
 exclude:
   - README.md

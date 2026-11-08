@@ -16,7 +16,7 @@ about/index.md       about page
 feed.xml             RSS
 ```
 
-Categories: `web`, `mobile`, `api`, `network`, `cloud`, `privesc`, `cve`.
+Categories: `web`, `mobile`.
 
 ## Notes
 
