@@ -1,6 +1,6 @@
 ---
 title: "Cryptographic Key Access Not Restricted (MASWE-0016)"
-date: 2026-11-09 12:20:00 +0000
+date: 2026-11-09 09:01:00 +0000
 subcategory: crypto
 summary: "Binding Keystore, Keychain and Secure Enclave keys to user authentication, the unlocked device and the device itself, and testing what a key really allows."
 refs: [MASWE-0016, MASVS-CRYPTO-2, MASVS-AUTH-2, MASVS-AUTH-3, CWE-284, CWE-306]

@@ -1,6 +1,6 @@
 ---
 title: "Improper Encryption (MASWE-0007)"
-date: 2026-11-09 12:29:00 +0000
+date: 2026-11-09 09:10:00 +0000
 subcategory: crypto
 summary: "Testing mobile encryption for broken ciphers, ECB, reused IVs and nonces, weak padding, multi-purpose keys and stale providers: tests, demos and fixes."
 refs: [MASWE-0007, MASVS-CRYPTO-1, MASVS-CRYPTO-2, CWE-208, CWE-323, CWE-325, CWE-326, CWE-327, CWE-329, CWE-780]

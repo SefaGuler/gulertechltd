@@ -1,6 +1,6 @@
 ---
 title: "Improper Random Number Generation (MASWE-0012)"
-date: 2026-11-09 12:24:00 +0000
+date: 2026-11-09 09:05:00 +0000
 subcategory: crypto
 summary: "Testing Android and iOS apps for predictable randomness: java.util.Random, seeded SecureRandom, rand/drand48, time-based tokens, Frida hooks, fixes."
 refs: [MASWE-0012, MASVS-CRYPTO-1, CWE-332, CWE-337, CWE-338]

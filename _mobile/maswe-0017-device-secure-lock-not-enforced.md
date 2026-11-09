@@ -1,6 +1,6 @@
 ---
 title: "Device Secure Lock Not Enforced (MASWE-0017)"
-date: 2026-11-09 12:19:00 +0000
+date: 2026-11-09 09:00:00 +0000
 subcategory: crypto
 summary: "Why app crypto on a phone with no passcode protects little, how to detect the secure lock screen on Android and iOS, and how to test and rate MASWE-0017."
 refs: [MASWE-0017, MASVS-CRYPTO-2, CWE-306, CWE-693]

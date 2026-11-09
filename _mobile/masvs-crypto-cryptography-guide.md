@@ -1,6 +1,6 @@
 ---
 title: "MASVS-CRYPTO: Testing Cryptography and Key Management in Android and iOS Apps"
-date: 2026-11-09 12:30:00 +0000
+date: 2026-11-09 09:11:00 +0000
 subcategory: crypto
 summary: "Hub for the MASVS-CRYPTO series: all eleven MASWE weaknesses, their MASTG Knowledge and Tests, an algorithm reference, a test plan and a hook cheat sheet."
 refs: [MASVS-CRYPTO-1, MASVS-CRYPTO-2, MASWE-0007, MASWE-0017]

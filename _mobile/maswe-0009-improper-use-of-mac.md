@@ -1,6 +1,6 @@
 ---
 title: "Improper Use of Message Authentication Code (MAC) (MASWE-0009)"
-date: 2026-11-09 12:27:00 +0000
+date: 2026-11-09 09:08:00 +0000
 subcategory: crypto
 summary: "How MACs fail in mobile apps (naive keyed hashes, short tags, timing leaks, bad composition, exposed keys) and how to test them on Android and iOS."
 refs: [MASWE-0009, MASVS-CRYPTO-1, MASVS-CRYPTO-2, CWE-208, CWE-323, CWE-327, CWE-354, CWE-807]

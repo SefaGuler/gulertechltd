@@ -1,6 +1,6 @@
 ---
 title: "Improper Verification of Cryptographic Signature (MASWE-0011)"
-date: 2026-11-09 12:25:00 +0000
+date: 2026-11-09 09:06:00 +0000
 subcategory: crypto
 summary: "Skipped or ignored checks, alg:none and key confusion, untrusted keys, partial payloads: how to test and prove signature-verification bypasses on mobile."
 refs: [MASWE-0011, MASVS-CRYPTO-1, CWE-295, CWE-347]

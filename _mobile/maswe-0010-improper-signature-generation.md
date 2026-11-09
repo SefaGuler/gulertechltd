@@ -1,6 +1,6 @@
 ---
 title: "Improper Generation of Cryptographic Signatures (MASWE-0010)"
-date: 2026-11-09 12:26:00 +0000
+date: 2026-11-09 09:07:00 +0000
 subcategory: crypto
 summary: "Weak signature schemes, short keys, ECDSA nonce reuse, misplaced or multi-purpose signing keys and signing oracles: how to test Android and iOS apps."
 refs: [MASWE-0010, MASVS-CRYPTO-1, MASVS-CRYPTO-2, CWE-323, CWE-326, CWE-327, CWE-330]

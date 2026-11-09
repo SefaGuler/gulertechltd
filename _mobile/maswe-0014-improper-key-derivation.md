@@ -1,6 +1,6 @@
 ---
 title: "Improper Cryptographic Key Derivation (MASWE-0014)"
-date: 2026-11-09 12:22:00 +0000
+date: 2026-11-09 09:03:00 +0000
 subcategory: crypto
 summary: "Testing mobile key derivation: PBKDF2, scrypt and Argon2id parameters, salts, PIN-derived keys, HKDF misuse, Frida hooks and offline cracking cost."
 refs: [MASWE-0014, MASVS-CRYPTO-2, CWE-326, CWE-327, CWE-759, CWE-760, CWE-916]

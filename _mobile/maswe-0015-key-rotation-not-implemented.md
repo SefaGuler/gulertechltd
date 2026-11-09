@@ -1,6 +1,6 @@
 ---
 title: "Cryptographic Key Rotation Not Implemented (MASWE-0015)"
-date: 2026-11-09 12:21:00 +0000
+date: 2026-11-09 09:02:00 +0000
 subcategory: crypto
 summary: "Cryptoperiods, key versioning and rotation for mobile apps: how to tell whether keys are ever rotated, and how to build rotation without losing data."
 refs: [MASWE-0015, MASVS-CRYPTO-2, CWE-324]

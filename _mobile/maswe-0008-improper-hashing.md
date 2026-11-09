@@ -1,6 +1,6 @@
 ---
 title: "Improper Hashing (MASWE-0008)"
-date: 2026-11-09 12:28:00 +0000
+date: 2026-11-09 09:09:00 +0000
 subcategory: crypto
 summary: "Finding MD5, SHA-1, fast and unsalted hashes in Android and iOS apps, judging whether each use matters, and what to replace them with."
 refs: [MASWE-0008, MASVS-CRYPTO-1, CWE-328, CWE-759, CWE-916]

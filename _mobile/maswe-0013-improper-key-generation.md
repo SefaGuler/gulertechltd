@@ -1,6 +1,6 @@
 ---
 title: "Improper Cryptographic Key Generation (MASWE-0013)"
-date: 2026-11-09 12:23:00 +0000
+date: 2026-11-09 09:04:00 +0000
 subcategory: crypto
 summary: "How to find mobile keys generated too short, from weak randomness or outside secure hardware, with Android and iOS tests, demos and NIST key-size guidance."
 refs: [MASWE-0013, MASVS-CRYPTO-2, CWE-326, CWE-331, CWE-337, CWE-338, CWE-522]
