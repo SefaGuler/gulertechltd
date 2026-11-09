@@ -357,7 +357,7 @@ Common false positives: test or sample code in third-party SDKs that is never ca
 
 #### Demo
 
-From [MASTG-DEMO-0017](https://mas.owasp.org/MASTG/demos/android/MASVS-CRYPTO/MASTG-DEMO-0017/). The vulnerable Kotlin:
+From [MASTG-DEMO-0017](https://mas.owasp.org/MASTG/demos/android/MASVS-CRYPTO/MASTG-DEMO-0017/MASTG-DEMO-0017/). The vulnerable Kotlin:
 
 ```kotlin
 // Bad: hardcoded 128-bit AES key from bytes
@@ -506,7 +506,7 @@ It **passes** for a call site when the bytes come from a Keychain lookup, a Secu
 
 Two OWASP demos cover this test.
 
-**[MASTG-DEMO-0013](https://mas.owasp.org/MASTG/demos/ios/MASVS-CRYPTO/MASTG-DEMO-0013/): hardcoded RSA private key in `SecKeyCreateWithData`.**
+**[MASTG-DEMO-0013](https://mas.owasp.org/MASTG/demos/ios/MASVS-CRYPTO/MASTG-DEMO-0013/MASTG-DEMO-0013/): hardcoded RSA private key in `SecKeyCreateWithData`.**
 
 ```swift
 // Hardcoded RSA private key in DER (PKCS#1) form — truncated
@@ -559,7 +559,7 @@ sym.func.10000491c 0x100004b7c [CALL:--x] bl sym.imp.SecKeyCreateWithData
 
 The import is called once, from `sym.func.10000491c`, and the `__DATA` segment at `0x1000100c8` starts with `30 82 02 5b 02 01 00` — an ASN.1 SEQUENCE of length `0x25b` (603) bytes containing version 0, i.e. an RSA private key. The 607 in the `px` command is those 603 bytes plus the 4-byte header, so the dump is exactly the whole key. Save it with `pr 607 @ 0x1000100c8 > key.der` and `openssl rsa -inform DER -in key.der -noout -text` will print the modulus and private exponent. The test fails. (The demo also uses 1024-bit RSA with PKCS#1 v1.5, which is a separate MASVS-CRYPTO finding.)
 
-**[MASTG-DEMO-0014](https://mas.owasp.org/MASTG/demos/ios/MASVS-CRYPTO/MASTG-DEMO-0014/): hardcoded ECDSA P-256 key in CryptoKit.**
+**[MASTG-DEMO-0014](https://mas.owasp.org/MASTG/demos/ios/MASVS-CRYPTO/MASTG-DEMO-0014/MASTG-DEMO-0014/): hardcoded ECDSA P-256 key in CryptoKit.**
 
 ```swift
 let privateKeyBytes: [UInt8] = [
@@ -1079,7 +1079,7 @@ When you report, include the extracted key (redacted to the first and last bytes
 - OWASP MASTG — [MASTG-TEST-0212: Use of Hardcoded Cryptographic Keys in Code](https://mas.owasp.org/MASTG/tests/android/MASVS-CRYPTO/MASTG-TEST-0212/) (CC BY-SA 4.0)
 - OWASP MASTG — [MASTG-TEST-0213: Use of Hardcoded Cryptographic Keys in Code](https://mas.owasp.org/MASTG/tests/ios/MASVS-CRYPTO/MASTG-TEST-0213/) (CC BY-SA 4.0)
 - OWASP MASTG — [MASTG-TEST-0214: Hardcoded Cryptographic Keys in Files](https://mas.owasp.org/MASTG/tests/ios/MASVS-CRYPTO/MASTG-TEST-0214/) (CC BY-SA 4.0)
-- OWASP MASTG — [MASTG-DEMO-0017](https://mas.owasp.org/MASTG/demos/android/MASVS-CRYPTO/MASTG-DEMO-0017/), [MASTG-DEMO-0013](https://mas.owasp.org/MASTG/demos/ios/MASVS-CRYPTO/MASTG-DEMO-0013/), [MASTG-DEMO-0014](https://mas.owasp.org/MASTG/demos/ios/MASVS-CRYPTO/MASTG-DEMO-0014/) (CC BY-SA 4.0)
+- OWASP MASTG — [MASTG-DEMO-0017](https://mas.owasp.org/MASTG/demos/android/MASVS-CRYPTO/MASTG-DEMO-0017/MASTG-DEMO-0017/), [MASTG-DEMO-0013](https://mas.owasp.org/MASTG/demos/ios/MASVS-CRYPTO/MASTG-DEMO-0013/MASTG-DEMO-0013/), [MASTG-DEMO-0014](https://mas.owasp.org/MASTG/demos/ios/MASVS-CRYPTO/MASTG-DEMO-0014/MASTG-DEMO-0014/) (CC BY-SA 4.0)
 - OWASP MASTG — techniques [MASTG-TECH-0013](https://mas.owasp.org/MASTG/techniques/android/MASTG-TECH-0013/), [MASTG-TECH-0014](https://mas.owasp.org/MASTG/techniques/android/MASTG-TECH-0014/), [MASTG-TECH-0058](https://mas.owasp.org/MASTG/techniques/ios/MASTG-TECH-0058/), [MASTG-TECH-0066](https://mas.owasp.org/MASTG/techniques/ios/MASTG-TECH-0066/), [MASTG-TECH-0076](https://mas.owasp.org/MASTG/techniques/ios/MASTG-TECH-0076/); tools [semgrep (MASTG-TOOL-0110)](https://mas.owasp.org/MASTG/tools/generic/MASTG-TOOL-0110/), [radare2 (MASTG-TOOL-0073)](https://mas.owasp.org/MASTG/tools/ios/MASTG-TOOL-0073/) (CC BY-SA 4.0)
 - [Android Developers — Android Keystore system](https://developer.android.com/privacy-and-security/keystore) (including [StrongBox](https://developer.android.com/privacy-and-security/keystore#StrongBoxKeyMint) and [importing encrypted keys](https://developer.android.com/privacy-and-security/keystore#ImportingEncryptedKeys))
 - [Android Developers — Verifying hardware-backed key pairs with key attestation](https://developer.android.com/privacy-and-security/security-key-attestation)

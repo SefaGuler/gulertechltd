@@ -313,7 +313,7 @@ Common false positives: non-sensitive media the user asked to save, public conte
 
 #### Demo
 
-Adapted from [MASTG-DEMO-0001](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0001/). The app writes one file to app-specific external storage and one to `Download/` through MediaStore:
+Adapted from [MASTG-DEMO-0001](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0001/MASTG-DEMO-0001/). The app writes one file to app-specific external storage and one to `Download/` through MediaStore:
 
 ```kotlin
 fun writeSecrets(context: Context) {
@@ -439,7 +439,7 @@ The test **passes** if no sensitive data is written, or if every sensitive write
 
 #### Demo
 
-Adapted from [MASTG-DEMO-0002](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0002/), using the same sample code as the TEST-0200 demo. Trimmed output:
+Adapted from [MASTG-DEMO-0002](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0002/MASTG-DEMO-0002/), using the same sample code as the TEST-0200 demo. Trimmed output:
 
 ```text
 [open] WRITE /storage/emulated/0/Android/data/org.owasp.mastestapp/files/secret.txt
@@ -557,7 +557,7 @@ The test **passes** when every call site writes non-sensitive data or encrypts s
 
 Three OWASP demos cover the main variants.
 
-**Volume root with All files access** ([MASTG-DEMO-0003](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0003/)):
+**Volume root with All files access** ([MASTG-DEMO-0003](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0003/MASTG-DEMO-0003/)):
 
 ```kotlin
 val file = File(Environment.getExternalStorageDirectory(), "secret.txt")   // /storage/emulated/0/secret.txt
@@ -579,7 +579,7 @@ AndroidManifest_reversed.xml
 
 To run it you must grant *All files access* (`adb shell appops set --uid org.owasp.mastestapp MANAGE_EXTERNAL_STORAGE allow`). The file then sits at the root of shared storage. It fails.
 
-**App-specific external storage** ([MASTG-DEMO-0004](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0004/)): `context.getExternalFilesDir(null)` plus `FileOutputStream`, writing a password, with no permission declared.
+**App-specific external storage** ([MASTG-DEMO-0004](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0004/MASTG-DEMO-0004/)): `context.getExternalFilesDir(null)` plus `FileOutputStream`, writing a password, with no permission declared.
 
 ```text
   ❯❱ rules.mastg-android-data-unencrypted-shared-storage-no-user-interaction-external-api-scoped
@@ -589,7 +589,7 @@ To run it you must grant *All files access* (`adb shell appops set --uid org.owa
 
 It fails because the content is a plaintext password. Note that it fails despite there being no permission in the manifest.
 
-**MediaStore** ([MASTG-DEMO-0005](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0005/)): an API key written to `Download/secretFile.txt` via `resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, …)`.
+**MediaStore** ([MASTG-DEMO-0005](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0005/MASTG-DEMO-0005/)): an API key written to `Download/secretFile.txt` via `resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, …)`.
 
 ```text
   ❯❱ rules.mastg-android-data-unencrypted-shared-storage-no-user-interaction-mediastore
@@ -949,7 +949,7 @@ OWASP (CC BY-SA 4.0):
 - [MASTG-TEST-0202: References to APIs and Permissions for Accessing External Storage](https://mas.owasp.org/MASTG/tests/android/MASVS-STORAGE/MASTG-TEST-0202/) (CC BY-SA 4.0)
 - [MASTG-TEST-0303: References to APIs for Storing Unencrypted Data in Shared Storage](https://mas.owasp.org/MASTG/tests/ios/MASVS-STORAGE/MASTG-TEST-0303/) (CC BY-SA 4.0)
 - [MASTG-BEST-0024: Store Data Encrypted in App Sandbox Directory](https://mas.owasp.org/MASTG/best-practices/MASTG-BEST-0024/) (CC BY-SA 4.0)
-- MASTG demos [0001](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0001/), [0002](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0002/), [0003](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0003/), [0004](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0004/), [0005](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0005/) (CC BY-SA 4.0)
+- MASTG demos [0001](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0001/MASTG-DEMO-0001/), [0002](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0002/MASTG-DEMO-0002/), [0003](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0003/MASTG-DEMO-0003/), [0004](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0004/MASTG-DEMO-0004/), [0005](https://mas.owasp.org/MASTG/demos/android/MASVS-STORAGE/MASTG-DEMO-0005/MASTG-DEMO-0005/) (CC BY-SA 4.0)
 
 Vendor documentation and research:
 
