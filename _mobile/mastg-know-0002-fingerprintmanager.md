@@ -1,6 +1,7 @@
 ---
 title: "FingerprintManager: Testing Legacy Android Fingerprint Auth (MASTG-KNOW-0002)"
 date: 2026-09-02
+subcategory: auth
 summary: "The deprecated pre-API 28 fingerprint API — what a correct implementation looks like, the five prerequisite checks, and how to spot the null-CryptoObject pattern."
 refs: [MASTG-KNOW-0002, MASVS-AUTH-2, CWE-287]
 tags: [android, biometrics, fingerprintmanager, keystore, legacy]

@@ -1,0 +1,21 @@
+---
+layout: default
+---
+{% assign cat = site.collections | where: "label", page.collection_key | first %}
+{% assign sub = site.data.subcategories[page.collection_key] | where: "key", page.subcategory_key | first %}
+{% assign notes = site[page.collection_key] | where: "subcategory", page.subcategory_key | sort: "date" | reverse %}
+<main class="wrap">
+  <section class="hero" style="padding-bottom:16px;">
+    <div class="eyebrow"><a href="{{ '/' | append: page.collection_key | append: '/' | relative_url }}">{{ cat.title }}</a> &nbsp;/&nbsp; {{ sub.code }}</div>
+    <h1>{{ sub.title }}<span class="cursor">_</span></h1>
+    <p class="lede">{{ page.description | default: sub.blurb }}</p>
+    <div class="meta"><span>{{ notes | size }} note{% if notes.size != 1 %}s{% endif %}</span></div>
+  </section>
+
+  <div class="section-head">Notes</div>
+  {% include note-list.html notes=notes %}
+
+  {{ content }}
+
+  <a class="back-link" href="{{ '/' | append: page.collection_key | append: '/' | relative_url }}">Back to {{ cat.title }}</a>
+</main>

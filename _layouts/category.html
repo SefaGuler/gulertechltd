@@ -3,6 +3,7 @@ layout: default
 ---
 {% assign cat = site.collections | where: "label", page.collection_key | first %}
 {% assign notes = site[page.collection_key] | sort: "date" | reverse %}
+{% assign subs = site.data.subcategories[page.collection_key] %}
 <main class="wrap">
   <section class="hero" style="padding-bottom:16px;">
     <div class="eyebrow">{{ cat.icon }} &nbsp; Category</div>
@@ -11,8 +12,28 @@ layout: default
     <div class="meta"><span>{{ notes | size }} note{% if notes.size != 1 %}s{% endif %}</span></div>
   </section>
 
+  {% if subs %}
+  <div class="section-head">Subcategories</div>
+  {% include subcategory-grid.html key=page.collection_key %}
+
+  {% for s in subs %}
+  {% assign group = notes | where: "subcategory", s.key %}
+  {% if group.size > 0 %}
+  <div class="section-head"><a class="section-link" href="{{ '/' | append: page.collection_key | append: '/' | append: s.key | append: '/' | relative_url }}">{{ s.code }} &middot; {{ s.title }}</a></div>
+  {% include note-list.html notes=group %}
+  {% endif %}
+  {% endfor %}
+
+  {% assign other = "" | split: "" %}
+  {% for n in notes %}{% unless n.subcategory %}{% assign other = other | push: n %}{% endunless %}{% endfor %}
+  {% if other.size > 0 %}
+  <div class="section-head">Other</div>
+  {% include note-list.html notes=other %}
+  {% endif %}
+  {% else %}
   <div class="section-head">Notes</div>
   {% include note-list.html notes=notes %}
+  {% endif %}
 
   {{ content }}
 </main>

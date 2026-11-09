@@ -1,0 +1,12 @@
+{% comment %} Cards for the subcategories of one collection. include.key = collection label {% endcomment %}
+<div class="cat-grid sub-grid">
+  {% for s in site.data.subcategories[include.key] %}
+  {% assign count = site[include.key] | where: "subcategory", s.key | size %}
+  <a class="cat-card{% if count == 0 %} is-empty{% endif %}" href="{{ '/' | append: include.key | append: '/' | append: s.key | append: '/' | relative_url }}">
+    <div class="icon">{{ s.code }}</div>
+    <h3>{{ s.title }}</h3>
+    <p>{{ s.blurb }}</p>
+    <span class="count">{% if count == 0 %}COMING SOON{% else %}{{ count }} NOTE{% if count != 1 %}S{% endif %} &rarr;{% endif %}</span>
+  </a>
+  {% endfor %}
+</div>

@@ -2,10 +2,11 @@
 layout: default
 ---
 {% assign cat = site.collections | where: "label", page.category | first %}
+{% if page.subcategory %}{% assign sub = site.data.subcategories[page.category] | where: "key", page.subcategory | first %}{% endif %}
 <main class="wrap">
   <article class="note">
     <header class="note-header">
-      <div class="kicker"><a href="{{ '/' | append: page.category | append: '/' | relative_url }}">{{ cat.title }}</a></div>
+      <div class="kicker"><a href="{{ '/' | append: page.category | append: '/' | relative_url }}">{{ cat.title }}</a>{% if sub %} <span class="crumb-sep">/</span> <a href="{{ '/' | append: page.category | append: '/' | append: sub.key | append: '/' | relative_url }}">{{ sub.title }}</a>{% endif %}</div>
       <h1>{{ page.title }}</h1>
       <div class="note-meta">
         {% if page.date %}<span>{{ page.date | date: "%Y-%m-%d" }}</span>{% endif %}
@@ -22,6 +23,10 @@ layout: default
       {{ content }}
     </div>
 
+    {% if sub %}
+    <a class="back-link" href="{{ '/' | append: page.category | append: '/' | append: sub.key | append: '/' | relative_url }}">Back to {{ sub.title }}</a>
+    {% else %}
     <a class="back-link" href="{{ '/' | append: page.category | append: '/' | relative_url }}">Back to {{ cat.title }}</a>
+    {% endif %}
   </article>
 </main>

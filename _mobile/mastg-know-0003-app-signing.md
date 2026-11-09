@@ -1,6 +1,7 @@
 ---
 title: "Android App Signing: v1/v2/v3 Schemes and How to Verify Them (MASTG-KNOW-0003)"
 date: 2026-09-02
+subcategory: resilience
 summary: "Signature schemes, debug-key detection, certificate validity requirements, and why a v1-only APK is a repackaging finding."
 refs: [MASTG-KNOW-0003, MASVS-RESILIENCE-1, CWE-347]
 tags: [android, apk, code-signing, apksigner, repackaging, masvs-resilience]

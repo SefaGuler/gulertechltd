@@ -1,6 +1,7 @@
 ---
 title: "Third-Party Libraries in Android Apps (MASTG-KNOW-0004)"
 date: 2026-09-02
+subcategory: code
 summary: "Identifying bundled dependencies in an APK, mapping them to known CVEs, and the licence exposure most reports leave out."
 refs: [MASTG-KNOW-0004, MASVS-CODE-3, CWE-1035, CWE-937]
 tags: [android, sca, dependencies, cve, supply-chain, masvs-code]

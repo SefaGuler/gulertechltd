@@ -1,6 +1,7 @@
 ---
 title: "Sensitive Data Stored Unencrypted in Private Storage (MASWE-0001)"
 date: 2026-11-08 12:04:00 +0000
+subcategory: storage
 summary: "Testing Android and iOS apps for plaintext tokens, secrets and PII in the sandbox: SharedPreferences, Room, WebView, Data Protection, Keychain, App Groups."
 refs: [MASWE-0001, MASVS-STORAGE-1, MASVS-STORAGE-2, CWE-312, CWE-922]
 tags: [android, ios, masvs-storage, data-protection, sandbox, frida]

@@ -1,0 +1,35 @@
+# Subcategories inside a category (collection). Notes opt in with `subcategory: <key>`
+# in front matter. Each entry also needs a page at <collection>/<key>/index.md.
+mobile:
+  - key: storage
+    code: MASVS-STORAGE
+    title: Storage
+    blurb: "Sensitive data at rest: app sandbox, external storage, keystore use, hardcoded secrets, logs and backups."
+  - key: crypto
+    code: MASVS-CRYPTO
+    title: Cryptography
+    blurb: "Encryption, hashing, MACs, signatures, randomness and key management."
+  - key: auth
+    code: MASVS-AUTH
+    title: Authentication & Authorisation
+    blurb: "Biometrics, local authentication, sessions and step-up flows."
+  - key: network
+    code: MASVS-NETWORK
+    title: Network Communication
+    blurb: "TLS configuration, certificate pinning and cleartext traffic."
+  - key: platform
+    code: MASVS-PLATFORM
+    title: Platform Interaction
+    blurb: "IPC, deep links, WebViews, content providers and UI data exposure."
+  - key: code
+    code: MASVS-CODE
+    title: Code Quality
+    blurb: "Third-party libraries, input validation, memory safety and platform versions."
+  - key: resilience
+    code: MASVS-RESILIENCE
+    title: Resilience
+    blurb: "App signing, tamper and root/jailbreak detection, obfuscation and anti-debugging."
+  - key: privacy
+    code: MASVS-PRIVACY
+    title: Privacy
+    blurb: "Data minimisation, tracking, permissions and transparency."

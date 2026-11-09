@@ -1,6 +1,7 @@
 ---
 title: "Memory Corruption in Android Apps: Where It Still Applies (MASTG-KNOW-0005)"
 date: 2026-09-02
+subcategory: code
 summary: "ART protects managed code, not JNI/NDK. What to test in native libraries, why MASTG dropped its black-box tests, and how to scope this in a report."
 refs: [MASTG-KNOW-0005, MASVS-CODE-4, CWE-787, CWE-416, CWE-190]
 tags: [android, ndk, jni, native, memory-safety, ghidra, masvs-code]

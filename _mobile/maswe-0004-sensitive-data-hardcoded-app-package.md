@@ -1,6 +1,7 @@
 ---
 title: "Sensitive Data Hardcoded in the App Package (MASWE-0004)"
 date: 2026-11-08 12:01:00 +0000
+subcategory: storage
 summary: "Finding, validating and removing secrets shipped inside APKs and IPAs: package anatomy, framework bundles, safe live-key checks and backend fixes."
 refs: [MASWE-0004, MASVS-STORAGE-1, CWE-798, CWE-540]
 tags: [android, ios, masvs-storage, secrets, api-keys, reverse-engineering]

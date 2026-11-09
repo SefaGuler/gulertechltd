@@ -1,6 +1,7 @@
 ---
 title: "MASVS-STORAGE-1: Testing Secure Storage of Sensitive Data on Android and iOS"
 date: 2026-11-08 12:05:00 +0000
+subcategory: storage
 summary: "Hub for the MASVS-STORAGE-1 series: the four MASWE weaknesses, every linked MASTG Knowledge and Test item, a test plan, and a command cheat sheet."
 refs: [MASVS-STORAGE-1, MASWE-0001, MASWE-0002, MASWE-0003, MASWE-0004]
 tags: [android, ios, masvs-storage, data-storage, methodology]

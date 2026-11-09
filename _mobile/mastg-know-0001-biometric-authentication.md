@@ -1,6 +1,7 @@
 ---
 title: "Android Biometric Authentication (MASTG-KNOW-0001)"
 date: 2026-09-02
+subcategory: auth
 summary: "How Android biometric auth actually works, why event-bound implementations are trivially bypassed, and how to test for Keystore-backed flows."
 refs: [MASTG-KNOW-0001, MASVS-AUTH-2, CWE-287]
 tags: [android, biometrics, keystore, frida, masvs-auth]

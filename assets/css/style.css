@@ -259,6 +259,19 @@ nav.site-nav a:hover { color: var(--accent); text-decoration: none; }
 .cat-card p { margin: 0 0 14px; font-size: 0.9rem; color: var(--text-muted); }
 .cat-card .count { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
 
+/* ---------- Subcategories ---------- */
+.sub-grid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+.sub-grid .cat-card { padding: 18px; }
+.sub-grid .cat-card .icon { font-size: 12px; letter-spacing: 0.08em; margin-bottom: 10px; }
+.sub-grid .cat-card h3 { font-size: 1rem; }
+.sub-grid .cat-card p { font-size: 0.85rem; }
+.cat-card.is-empty { opacity: 0.55; }
+.cat-card.is-empty .count { color: var(--text-muted); }
+.section-head .section-link { color: var(--text-muted); }
+.section-head .section-link:hover { color: var(--accent); text-decoration: none; }
+.hero .eyebrow a { color: inherit; }
+.kicker .crumb-sep { color: var(--text-muted); margin: 0 4px; }
+
 /* ---------- Note list ---------- */
 .note-list { list-style: none; padding: 0; margin: 0; }
 .note-list li { border-bottom: 1px solid var(--line); }

@@ -1,6 +1,7 @@
 ---
 title: "Cryptographic Keys Stored Outside of Platform Keystore (MASWE-0003)"
 date: 2026-11-08 12:02:00 +0000
+subcategory: storage
 summary: "Why keys kept outside the Android Keystore or iOS Keychain/Secure Enclave are recoverable, how to find hardcoded keys, and how to store keys properly."
 refs: [MASWE-0003, MASVS-STORAGE-1, MASVS-CRYPTO-2, CWE-321]
 tags: [android, ios, masvs-storage, keystore, keychain, hardcoded-keys]

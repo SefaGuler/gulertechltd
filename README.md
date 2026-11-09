@@ -6,8 +6,9 @@ Jekyll site served by GitHub Pages. No build step — push to `main` and GitHub 
 
 ```
 _config.yml          site config + category (collection) definitions
-_layouts/            default / note / category / page
-_includes/           note-list partial
+_layouts/            default / note / category / subcategory / page
+_includes/           note-list and subcategory-grid partials
+_data/               subcategories.yml (subcategories per category)
 assets/css/          style.css (theme), syntax.css (rouge highlighting)
 index.html           home: category grid + latest notes
 <cat>/index.md       category listing page (one per collection)
@@ -17,6 +18,15 @@ feed.xml             RSS
 ```
 
 Categories: `web`, `mobile`.
+
+## Subcategories
+
+A category can be split into subcategories (Mobile uses the OWASP MASVS groups).
+
+- Define them in `_data/subcategories.yml` under the collection key (`key`, `code`, `title`, `blurb`).
+- Create one page per subcategory at `<cat>/<key>/index.md` with `layout: subcategory`,
+  `collection_key`, `subcategory_key` and `permalink: /<cat>/<key>/`.
+- Notes opt in with `subcategory: <key>` in front matter. Note URLs stay `/<cat>/<slug>/`.
 
 ## Notes
 

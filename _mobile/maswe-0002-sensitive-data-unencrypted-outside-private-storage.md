@@ -1,6 +1,7 @@
 ---
 title: "Sensitive Data Stored Unencrypted Outside of Private Storage (MASWE-0002)"
 date: 2026-11-08 12:03:00 +0000
+subcategory: storage
 summary: "Testing Android external/shared storage and iOS Files-app exposure for unencrypted sensitive data: MASTG-TEST-0200–0202, 0303 and the fixes."
 refs: [MASWE-0002, MASVS-STORAGE-1, CWE-312, CWE-922]
 tags: [android, ios, masvs-storage, external-storage, scoped-storage, mediastore]
