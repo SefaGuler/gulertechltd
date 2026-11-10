@@ -64,6 +64,8 @@ apksigner verify --print-certs target.apk | grep -i "CN="
 keytool -printcert -jarfile target.apk
 ```
 
+`keytool -printcert -jarfile` reads only the v1 (JAR) signature. Builds with `minSdkVersion` 24 or higher often carry no v1 signature at all, and then `keytool` prints nothing even though the APK is signed; rely on the `apksigner` output in that case.
+
 The Android debug key is unmistakable:
 
 ```
@@ -77,6 +79,8 @@ A production APK signed with the debug key is a finding in its own right: the pr
 ```bash
 keytool -printcert -jarfile target.apk | grep -A2 "Valid from"
 ```
+
+This only works when the APK still has a v1 signature (see above). For v2+-only APKs, take the dates from the certificate in Play Console or from a certificate you export from the signed APK.
 
 Check the expiry against the Play requirement (after 22 October 2033) and against the 25-year recommendation. A certificate expiring within a few years means the app cannot be updated past that date without a key rotation path.
 
@@ -122,7 +126,7 @@ If the app uses v3 lineage, confirm that any server-side or client-side certific
 Weak or absent signing controls do not directly compromise a user; they remove the barrier to distributing a modified build. The realistic attack chain is: attacker repackages the app with pinning and root detection removed (and optionally malicious code added), signs it with their own key, and distributes it through a third-party store or sideload lure. Users who install it get a functioning app that leaks credentials or traffic.
 
 - Debug-key signed release build: **High** — the signing key is public knowledge, so an attacker can produce updates the platform accepts.
-- v1-only signature with `minSdkVersion` ≤ 26: **Medium** — Janus-style modification is possible on affected platform versions.
+- v1-only signature: **Low to Medium** — Janus-style modification (CVE-2017-13156) is possible on unpatched Android 5.0–8.0 devices, and Android 11+ refuses to install a v1-only APK that targets API 30 or higher. Rate it by how many unpatched old devices the app still supports. See [MASWE-0056](/mobile/maswe-0056-app-attestation-not-implemented/) for the current signature-scheme tests.
 - No runtime integrity check at all: usually **Low to Medium** on its own, but it is the enabling condition that raises the severity of every other client-side control you defeat, and should be reported as such.
 
 ## Remediation

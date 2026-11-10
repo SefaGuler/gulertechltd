@@ -407,7 +407,7 @@ Like its Android twin, this is reverse-engineering help, not a vulnerability: In
 
 ```bash
 find ipa/Payload -name '*.dSYM'                          # must be empty
-nm -a ipa/Payload/App.app/App | grep -c ' - '            # debug-map (stab) entries; 0 when stripped
+nm -a ipa/Payload/App.app/App | grep -cE ' (SO|OSO|FUN) ' # debug-map (stab) entries; 0 when stripped
 nm ipa/Payload/App.app/App | grep -c ' t '               # local text symbols that survived
 rabin2 -I ipa/Payload/App.app/App | grep -E 'stripped|dbg_file'
 ```
