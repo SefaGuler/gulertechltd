@@ -454,7 +454,7 @@ A CODE review touches these weaknesses from other groups. Where we have a note, 
 - **[MASWE-0011: Improper signature verification](/mobile/maswe-0011-improper-signature-verification/)** (CRYPTO). Both MASWE-0049 and MASWE-0057 rely on it for the integrity check on downloaded code and stored resources. [MASWE-0012](/mobile/maswe-0012-improper-random-number-generation/) and the [CRYPTO hub](/mobile/masvs-crypto-cryptography-guide/) cover the crypto side of MASWE-0046 and 0047.
 - **[MASWE-0004: Sensitive data hardcoded in the app package](/mobile/maswe-0004-sensitive-data-hardcoded-app-package/)** (STORAGE). Test keys and non-production credentials.
 - **[MASWE-0057](https://mas.owasp.org/MASWE/MASVS-RESILIENCE/MASWE-0057/), [MASWE-0061](https://mas.owasp.org/MASWE/MASVS-RESILIENCE/MASWE-0061/) and [MASWE-0063](https://mas.owasp.org/MASWE/MASVS-RESILIENCE/MASWE-0063/)** (RESILIENCE). Resource integrity, debug artefacts and debuggable builds. Coming in our RESILIENCE series.
-- **[MASWE-0075](https://mas.owasp.org/MASWE/MASVS-PRIVACY/MASWE-0075/)** (non-reproducible builds) and **[MASWE-0073](https://mas.owasp.org/MASWE/MASVS-PRIVACY/MASWE-0073/)** (data collection declarations). MASWE-0048 hands over to the first for build provenance, and MASWE-0044 to the second for what SDKs collect.
+- **[MASWE-0075](/mobile/maswe-0075-non-reproducible-builds/)** (non-reproducible builds) and **[MASWE-0073](/mobile/maswe-0073-inadequate-data-collection-declarations/)** (data collection declarations). MASWE-0048 hands over to the first for build provenance, and MASWE-0044 to the second for what SDKs collect.
 
 ## Other series hubs
 

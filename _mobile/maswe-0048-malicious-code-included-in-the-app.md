@@ -7,7 +7,7 @@ refs: [MASWE-0048, MASVS-CODE-3, CWE-506, CWE-507, CWE-511]
 tags: [android, ios, masvs-code, supply-chain, sdk, build-integrity]
 ---
 
-This note is part of our [MASVS-CODE guide](/mobile/masvs-code-code-quality-guide/) and covers OWASP [MASWE-0048](https://mas.owasp.org/MASWE/MASVS-CODE/MASWE-0048/): an app that ships code its owner did not intend to ship. That code may have been planted by an insider, pulled in by a compromised or hostile SDK, injected by a build tool or CI job, or simply left behind as a "temporary" test switch that nobody removed. The note is written for two readers: app owners who need to show that their release build contains what they think it contains, and assessors asked to give that assurance. Everything here is review and detection on the app's own artefacts: its source, lockfiles, build configuration, release binaries and runtime behaviour. **OWASP has no MASTG tests and no Knowledge pages for MASWE-0048**, so the background and the five checks below (GT-CODE-0048-1 to GT-CODE-0048-5) are Guler Tech methodology. The note complements [MASWE-0044](/mobile/maswe-0044-dependencies-with-known-vulnerabilities/) (dependencies with *known vulnerabilities*) and OWASP's [MASWE-0075 Non-Reproducible Builds](https://mas.owasp.org/MASWE/MASVS-PRIVACY/MASWE-0075/) (being unable to prove *what was built*). It also links to [MASWE-0049](/mobile/maswe-0049-unsafe-dynamic-code-loading/) for code that arrives after installation.
+This note is part of our [MASVS-CODE guide](/mobile/masvs-code-code-quality-guide/) and covers OWASP [MASWE-0048](https://mas.owasp.org/MASWE/MASVS-CODE/MASWE-0048/): an app that ships code its owner did not intend to ship. That code may have been planted by an insider, pulled in by a compromised or hostile SDK, injected by a build tool or CI job, or simply left behind as a "temporary" test switch that nobody removed. The note is written for two readers: app owners who need to show that their release build contains what they think it contains, and assessors asked to give that assurance. Everything here is review and detection on the app's own artefacts: its source, lockfiles, build configuration, release binaries and runtime behaviour. **OWASP has no MASTG tests and no Knowledge pages for MASWE-0048**, so the background and the five checks below (GT-CODE-0048-1 to GT-CODE-0048-5) are Guler Tech methodology. The note complements [MASWE-0044](/mobile/maswe-0044-dependencies-with-known-vulnerabilities/) (dependencies with *known vulnerabilities*) and OWASP's [MASWE-0075 Non-Reproducible Builds](/mobile/maswe-0075-non-reproducible-builds/) (being unable to prove *what was built*). It also links to [MASWE-0049](/mobile/maswe-0049-unsafe-dynamic-code-loading/) for code that arrives after installation.
 
 ## Contents
 
@@ -63,7 +63,7 @@ Keep the neighbouring weaknesses apart:
 | Question | Where it lives |
 |---|---|
 | Does a dependency have a published vulnerability (CVE, advisory)? | [MASWE-0044](/mobile/maswe-0044-dependencies-with-known-vulnerabilities/) |
-| Can anyone rebuild the released binary from source and get the same bytes? | [MASWE-0075](https://mas.owasp.org/MASWE/MASVS-PRIVACY/MASWE-0075/) (MASVS-PRIVACY) |
+| Can anyone rebuild the released binary from source and get the same bytes? | [MASWE-0075](/mobile/maswe-0075-non-reproducible-builds/) (MASVS-PRIVACY) |
 | Does the app download and run code after installation? | [MASWE-0049](/mobile/maswe-0049-unsafe-dynamic-code-loading/) |
 | Are secrets or test credentials hard-coded in the package? | [MASWE-0004](/mobile/maswe-0004-sensitive-data-hardcoded-app-package/) (a hard-coded test *account that works* is also a backdoor indicator here) |
 | Does the shipped code contain code that is present *on purpose* and does something the owner did not intend? | This note |
@@ -93,7 +93,7 @@ One limitation needs saying early. No test can prove the *absence* of malicious 
 
 - **Review code and changes.** Require review by someone other than the author for every change to protected branches, including build files, CI definitions and lockfiles. Enforce strong authentication (hardware-backed MFA) for code hosting, package registries and store consoles, and remove access when people leave.
 - **Know and limit the supply chain.** Keep an approved list of SDKs and libraries with an owner and a purpose for each. Pin versions with lockfiles, verify checksums or signatures, restrict which repository may serve which package, and monitor components with SCA ([MASWE-0044](/mobile/maswe-0044-dependencies-with-known-vulnerabilities/)).
-- **Protect the build pipeline.** Build releases only in CI from reviewed commits. Pin CI actions and images by digest, keep signing keys out of developer machines, scope secrets to release jobs, and produce provenance attestations (SLSA). Aim for reproducible builds ([MASWE-0075](https://mas.owasp.org/MASWE/MASVS-PRIVACY/MASWE-0075/)).
+- **Protect the build pipeline.** Build releases only in CI from reviewed commits. Pin CI actions and images by digest, keep signing keys out of developer machines, scope secrets to release jobs, and produce provenance attestations (SLSA). Aim for reproducible builds ([MASWE-0075](/mobile/maswe-0075-non-reproducible-builds/)).
 - **Analyse the shipped artefact.** Before each release, diff the release build against the previous one and against what the source says it should contain, observe its network destinations, and scan it. Investigate everything you cannot explain.
 - **Keep debug code out of release builds.** Use build variants, source sets and compile-time conditions so that test-only code is not compiled into release builds, rather than relying on runtime checks.
 
@@ -353,7 +353,7 @@ releaseRuntimeClasspath
 
 *Guler Tech methodology — not an OWASP test.*
 
-Platform: Android and iOS. Type: static (binary comparison). Related: [MASWE-0075](https://mas.owasp.org/MASWE/MASVS-PRIVACY/MASWE-0075/), [app signing](/mobile/mastg-know-0003-app-signing/).
+Platform: Android and iOS. Type: static (binary comparison). Related: [MASWE-0075](/mobile/maswe-0075-non-reproducible-builds/), [app signing](/mobile/mastg-know-0003-app-signing/).
 
 #### Overview
 
@@ -696,7 +696,7 @@ $ jq -r 'select(.type=="networkActivity" and .bundleID=="com.example.app") | .do
 
 *Guler Tech methodology — not an OWASP test.*
 
-Platform: Android and iOS. Type: manual (configuration and process review) with static checks of build files. Related: [MASWE-0075](https://mas.owasp.org/MASWE/MASVS-PRIVACY/MASWE-0075/), [SLSA](https://slsa.dev/).
+Platform: Android and iOS. Type: manual (configuration and process review) with static checks of build files. Related: [MASWE-0075](/mobile/maswe-0075-non-reproducible-builds/), [SLSA](https://slsa.dev/).
 
 #### Overview
 
