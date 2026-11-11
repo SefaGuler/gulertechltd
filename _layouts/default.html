@@ -43,6 +43,7 @@
         <a href="{{ '/' | relative_url }}">Home</a>
         {% for key in site.category_order %}{% assign c = site.collections | where: "label", key | first %}<a href="{{ '/' | append: key | append: '/' | relative_url }}">{{ c.title }}</a>
         {% endfor %}
+        <a href="{{ '/bug-bounty-writeups/' | relative_url }}">Bug Bounty Writeups</a>
         <a href="{{ '/about/' | relative_url }}">About</a>
         <div class="theme-switch" hidden>
           <button type="button" class="theme-toggle" aria-haspopup="menu" aria-expanded="false" aria-controls="theme-menu"><span class="label">Theme</span><span class="caret" aria-hidden="true">&#9662;</span></button>
