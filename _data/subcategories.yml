@@ -33,3 +33,8 @@ mobile:
     code: MASVS-PRIVACY
     title: Privacy
     blurb: "Data minimisation, tracking, permissions and transparency."
+cloud:
+  - key: aws
+    code: AWS
+    title: Amazon Web Services
+    blurb: "IAM and privilege escalation, S3, EC2/IMDS, serverless, containers, data stores, CloudTrail, CloudWatch and detection services."

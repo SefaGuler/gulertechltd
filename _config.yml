@@ -1,8 +1,8 @@
 title: Guler Tech Ltd
 tagline: Offensive Security Research & Notes
 description: >-
-  Penetration testing notes and research by Guler Tech Ltd — web and mobile
-  application security writeups from real engagements and lab work.
+  Penetration testing notes and research by Guler Tech Ltd — web, mobile and
+  cloud security writeups from real engagements and lab work.
 author: Guler Tech Ltd
 email: info@gulertech.co.uk
 url: "https://gulertech.co.uk"
@@ -32,9 +32,14 @@ collections:
     title: Mobile Application
     icon: "&#9633;"
     blurb: "iOS & Android — static/dynamic analysis, Frida/Objection, SSL pinning & root/jailbreak bypass."
+  cloud:
+    output: true
+    title: Cloud Security
+    icon: "&#9729;"
+    blurb: "AWS configuration review and assumed-breach testing — IAM, S3, compute, containers, logging and detection."
 
 # Order categories appear on the homepage
-category_order: [web, mobile]
+category_order: [web, mobile, cloud]
 
 defaults:
   - scope:
@@ -49,6 +54,12 @@ defaults:
     values:
       layout: note
       category: mobile
+  - scope:
+      path: ""
+      type: cloud
+    values:
+      layout: note
+      category: cloud
 
 exclude:
   - README.md
