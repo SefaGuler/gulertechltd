@@ -1,5 +1,50 @@
 # Subcategories inside a category (collection). Notes opt in with `subcategory: <key>`
 # in front matter. Each entry also needs a page at <collection>/<key>/index.md.
+web:
+  - key: methodology
+    code: WEB
+    title: Methodology
+    blurb: "How we run web assessments: rules of engagement, set-up, test phases, rating and reporting."
+  - key: access-control
+    code: WSTG-ATHZ
+    title: Access Control
+    blurb: "IDOR/BOLA, vertical privilege escalation, authorization bypasses, mass assignment, tenant isolation and revocation."
+  - key: injection
+    code: WSTG-INPV
+    title: Injection
+    blurb: "SQL, NoSQL, OS command, template, XXE, LDAP/XPath and header injection."
+  - key: client-side
+    code: WSTG-CLNT
+    title: Client-Side
+    blurb: "XSS, CSP, clickjacking, postMessage, CORS, DOM clobbering and open redirects."
+  - key: authentication
+    code: WSTG-ATHN
+    title: Authentication
+    blurb: "Login, account enumeration, password reset, MFA, OAuth/OIDC and SAML."
+  - key: session
+    code: WSTG-SESS
+    title: Session Management
+    blurb: "Cookie attributes, session fixation, CSRF, JWTs and logout."
+  - key: server-side
+    code: SSRF
+    title: Server-Side Request & Files
+    blurb: "SSRF, file upload, path traversal and insecure deserialisation."
+  - key: http-infra
+    code: HTTP
+    title: HTTP & Infrastructure
+    blurb: "Request smuggling, cache poisoning and deception, Host header attacks and WebSockets."
+  - key: business-logic
+    code: WSTG-BUSL
+    title: Business Logic
+    blurb: "Race conditions, workflow bypass and price or quantity manipulation."
+  - key: api
+    code: WSTG-APIT
+    title: API Security
+    blurb: "REST, GraphQL and gRPC against the OWASP API Security Top 10 2023."
+  - key: recon-config
+    code: WSTG-INFO
+    title: Recon & Configuration
+    blurb: "Fingerprinting, content discovery, security headers, error handling and TLS."
 mobile:
   - key: storage
     code: MASVS-STORAGE
