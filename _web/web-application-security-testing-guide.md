@@ -278,7 +278,7 @@ Every row ends as Pass, Fail or N/A with a reason. "Not tested" is allowed only 
 | Subcategory | Status | Main WSTG chapters | What it covers |
 |---|---|---|---|
 | [Access Control](/web/web-access-control-testing-guide/) | Published | `WSTG-ATHZ-02` to `-04`, `WSTG-APIT-02` to `-04`, `WSTG-INJT-20`, parts of `WSTG-BUSL` | Hub plus six notes, listed below |
-| Injection | Coming next | `WSTG-INJT` (XSS, SQL, NoSQL, LDAP, command, code, SSTI, format string, CSV, prototype pollution) | Server-side and stored injection, with safe proofs and parameterised fixes |
+| [Injection](/web/web-injection-testing-guide/) | Published | `WSTG-INJT-05` to `-12`, `-14`, `-15`, `-18`, `-21`, `-22` | Hub plus eight notes, listed below (XSS is covered under Client-Side) |
 | Client-Side | Coming next | `WSTG-CLNT` | DOM XSS, CORS, clickjacking, web messaging, browser storage, client-side redirects, CSS injection, DOM clobbering |
 | Authentication | Coming next | `WSTG-IDNT`, `WSTG-ATHN`, `WSTG-ATHZ-05` | Registration, enumeration, lockout, password reset, MFA, SAML, OAuth and OIDC |
 | Session Management | Coming next | `WSTG-SESS` | Session tokens, cookies, fixation, CSRF, logout, timeouts, JWTs, concurrent sessions |
@@ -300,6 +300,20 @@ The Access Control subcategory:
 | [Multi-tenant isolation](/web/web-multi-tenant-isolation/) | `GT-WEB-TEN-n` | Cross-tenant access in SaaS: tenant identifiers, invitations, search, shared infrastructure |
 | [Revocation, sharing and asynchronous access](/web/web-access-control-revocation-sharing-async/) | `GT-WEB-CTX-n` | Stale permissions after role changes, share links, exports and downloads, background jobs, webhooks, real-time channels, confused deputies between services |
 
+The Injection subcategory:
+
+| Note | Test IDs | What it covers |
+|---|---|---|
+| [Injection Testing Guide](/web/web-injection-testing-guide/) | — | The interpreter and context model, the safe-proof ladder, the test plan and how the notes below fit together |
+| [SQL injection](/web/web-sql-injection/) | `GT-WEB-SQLI-n` | Error, boolean, time and out-of-band detection, ORDER BY and identifier injection, second-order injection, ORM escape hatches |
+| [NoSQL injection](/web/web-nosql-injection/) | `GT-WEB-NOSQL-n` | MongoDB operator injection, type confusion, server-side JavaScript, Elasticsearch, DynamoDB and Redis |
+| [OS command and argument injection](/web/web-os-command-injection/) | `GT-WEB-CMD-n` | Features that shell out, blind confirmation with bounded delays and DNS, option injection without a shell |
+| [Server-side template and code injection](/web/web-server-side-template-injection/) | `GT-WEB-SSTI-n` | Template engines, expression languages, `eval`, server-side includes and lookup strings |
+| [XXE and XML injection](/web/web-xxe-xml-injection/) | `GT-WEB-XXE-n` | External entities, XInclude, XSLT, XML inside uploads, parser hardening per platform |
+| [LDAP and XPath injection](/web/web-ldap-xpath-injection/) | `GT-WEB-LDAP-n` | Directory search filters, DN injection, login filters, XPath and XQuery lookups |
+| [CRLF, email header, log and CSV injection](/web/web-crlf-header-log-csv-injection/) | `GT-WEB-CRLF-n` | Response header injection, mail headers and recipients, log forging, formula injection in exports |
+| [Server-side prototype pollution](/web/web-server-side-prototype-pollution/) | `GT-WEB-PP-n` | Unsafe merges and path setters in Node.js, non-destructive detection, gadgets and fixes |
+
 Each note has 8–12 tests. Later subcategories get their own `AREA` codes when they are published.
 
 Our other series use the same structure. The mobile series follows OWASP MASVS; the [MASVS-AUTH hub](/mobile/masvs-auth-authentication-guide/) is a good entry point, and much of what it says about back-end authorisation applies to the APIs behind web front ends too. The [AWS series hub](/cloud/aws-security-testing-guide/) covers the cloud accounts many of these applications run in, which is where an SSRF finding goes next. Public writeups are collected on the [Bug Bounty Writeups](/bug-bounty-writeups/) page (mobile writeups at the time of writing; web writeups will be added as the series grows).
@@ -318,8 +332,8 @@ If you have a day rather than two weeks, these checks find most of the serious i
 8. **Password reset and email change**: token leakage, tokens tied to the wrong account, reset links built from the `Host` header, email change without re-authentication. Authentication (coming next)
 9. **MFA on every login path**: the web form, the API, SSO, the mobile endpoint, the "remember this device" cookie. Authentication (coming next)
 10. **Session lifecycle**: cookie attributes, a new session on login, logout that actually ends the session on the server, JWT signature and expiry checks. Session Management (coming next)
-11. **Stored and DOM XSS** in rich text, Markdown, file names, display names and anything rendered in an admin panel. Injection and Client-Side (coming next)
-12. **SQL and NoSQL injection in search, sort and filter parameters**, which are often built by hand even in ORM-based applications. Injection (coming next)
+11. **Stored and DOM XSS** in rich text, Markdown, file names, display names and anything rendered in an admin panel. Client-Side (coming next)
+12. **SQL and NoSQL injection in search, sort and filter parameters**, which are often built by hand even in ORM-based applications. [SQL injection](/web/web-sql-injection/) and [NoSQL injection](/web/web-nosql-injection/)
 13. **SSRF wherever the server fetches a URL**: webhooks, "import from URL", PDF and image renderers, link previews. Server-Side Request & Files (coming next)
 14. **File uploads**: what types are accepted, where files are stored, and what `Content-Type` they are served back with. Server-Side Request & Files (coming next)
 15. **CORS that reflects any origin with credentials**, and cross-origin reads of authenticated JSON. Client-Side (coming next)
