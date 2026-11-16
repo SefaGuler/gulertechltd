@@ -279,7 +279,7 @@ Every row ends as Pass, Fail or N/A with a reason. "Not tested" is allowed only 
 |---|---|---|---|
 | [Access Control](/web/web-access-control-testing-guide/) | Published | `WSTG-ATHZ-02` to `-04`, `WSTG-APIT-02` to `-04`, `WSTG-INJT-20`, parts of `WSTG-BUSL` | Hub plus six notes, listed below |
 | [Injection](/web/web-injection-testing-guide/) | Published | `WSTG-INJT-05` to `-12`, `-14`, `-15`, `-18`, `-21`, `-22` | Hub plus eight notes, listed below (XSS is covered under Client-Side) |
-| Client-Side | Coming next | `WSTG-CLNT` | DOM XSS, CORS, clickjacking, web messaging, browser storage, client-side redirects, CSS injection, DOM clobbering |
+| [Client-Side](/web/web-client-side-testing-guide/) | Published | `WSTG-CLNT-01` to `-07`, `-09`, `-11` to `-16`, `WSTG-INJT-01`, `-02` | Hub plus nine notes, listed below |
 | Authentication | Coming next | `WSTG-IDNT`, `WSTG-ATHN`, `WSTG-ATHZ-05` | Registration, enumeration, lockout, password reset, MFA, SAML, OAuth and OIDC |
 | Session Management | Coming next | `WSTG-SESS` | Session tokens, cookies, fixation, CSRF, logout, timeouts, JWTs, concurrent sessions |
 | Server-Side Request & Files | Coming next | `WSTG-INJT-19`, `WSTG-INJT-23`, `WSTG-ATHZ-01`, `WSTG-BUSL-08`, `WSTG-BUSL-09` | SSRF, file uploads, path traversal and file inclusion, deserialisation |
@@ -314,6 +314,21 @@ The Injection subcategory:
 | [CRLF, email header, log and CSV injection](/web/web-crlf-header-log-csv-injection/) | `GT-WEB-CRLF-n` | Response header injection, mail headers and recipients, log forging, formula injection in exports |
 | [Server-side prototype pollution](/web/web-server-side-prototype-pollution/) | `GT-WEB-PP-n` | Unsafe merges and path setters in Node.js, non-destructive detection, gadgets and fixes |
 
+The Client-Side subcategory:
+
+| Note | Test IDs | What it covers |
+|---|---|---|
+| [Client-Side Testing Guide](/web/web-client-side-testing-guide/) | — | Browser trust boundaries, safe proofs for client-side bugs, the test plan and how the notes below fit together |
+| [Reflected and stored XSS](/web/web-reflected-stored-xss/) | `GT-WEB-XSS-n` | Output contexts, encoding, sanitisers, framework escape hatches, stored and blind XSS |
+| [DOM XSS and client-side injection](/web/web-dom-xss-client-side-injection/) | `GT-WEB-DOM-n` | Sources and sinks, DOM Invader, client-side template injection, Trusted Types |
+| [CSP and browser security headers](/web/web-content-security-policy-headers/) | `GT-WEB-CSP-n` | Strict CSP, policy weaknesses, HSTS, nosniff, Referrer-Policy, COOP/COEP/CORP |
+| [CORS and XSSI](/web/web-cors-xssi/) | `GT-WEB-CORS-n` | Origin reflection, null and lookalike origins, preflight gaps, JSONP and script inclusion |
+| [Clickjacking and reverse tabnabbing](/web/web-clickjacking-tabnabbing/) | `GT-WEB-CLICK-n` | frame-ancestors, partial coverage, multi-step and timing variants, window.opener |
+| [postMessage and web messaging](/web/web-postmessage-web-messaging/) | `GT-WEB-MSG-n` | Origin checks, message data in sinks, wildcard targetOrigin leaks, sign-in popups |
+| [DOM clobbering and CSS injection](/web/web-dom-clobbering-css-injection/) | `GT-WEB-CLOB-n` | Scriptless injection: clobbering, CSS, dangling markup, base and form hijacking |
+| [Open redirects](/web/web-open-redirect/) | `GT-WEB-REDIR-n` | Server- and client-side redirects, validator and parser weaknesses, login and SSO flows |
+| [Browser storage and third-party scripts](/web/web-browser-storage-third-party-scripts/) | `GT-WEB-STOR-n` | Tokens in storage, service workers, secrets in bundles and source maps, SRI and tag governance |
+
 Each note has 8–12 tests. Later subcategories get their own `AREA` codes when they are published.
 
 Our other series use the same structure. The mobile series follows OWASP MASVS; the [MASVS-AUTH hub](/mobile/masvs-auth-authentication-guide/) is a good entry point, and much of what it says about back-end authorisation applies to the APIs behind web front ends too. The [AWS series hub](/cloud/aws-security-testing-guide/) covers the cloud accounts many of these applications run in, which is where an SSRF finding goes next. Public writeups are collected on the [Bug Bounty Writeups](/bug-bounty-writeups/) page (mobile writeups at the time of writing; web writeups will be added as the series grows).
@@ -332,11 +347,11 @@ If you have a day rather than two weeks, these checks find most of the serious i
 8. **Password reset and email change**: token leakage, tokens tied to the wrong account, reset links built from the `Host` header, email change without re-authentication. Authentication (coming next)
 9. **MFA on every login path**: the web form, the API, SSO, the mobile endpoint, the "remember this device" cookie. Authentication (coming next)
 10. **Session lifecycle**: cookie attributes, a new session on login, logout that actually ends the session on the server, JWT signature and expiry checks. Session Management (coming next)
-11. **Stored and DOM XSS** in rich text, Markdown, file names, display names and anything rendered in an admin panel. Client-Side (coming next)
+11. **Stored and DOM XSS** in rich text, Markdown, file names, display names and anything rendered in an admin panel. [Reflected and stored XSS](/web/web-reflected-stored-xss/) and [DOM XSS](/web/web-dom-xss-client-side-injection/)
 12. **SQL and NoSQL injection in search, sort and filter parameters**, which are often built by hand even in ORM-based applications. [SQL injection](/web/web-sql-injection/) and [NoSQL injection](/web/web-nosql-injection/)
 13. **SSRF wherever the server fetches a URL**: webhooks, "import from URL", PDF and image renderers, link previews. Server-Side Request & Files (coming next)
 14. **File uploads**: what types are accepted, where files are stored, and what `Content-Type` they are served back with. Server-Side Request & Files (coming next)
-15. **CORS that reflects any origin with credentials**, and cross-origin reads of authenticated JSON. Client-Side (coming next)
+15. **CORS that reflects any origin with credentials**, and cross-origin reads of authenticated JSON. [CORS and XSSI](/web/web-cors-xssi/)
 16. **Single-use and limited actions under concurrency**: coupons, transfers, invitations and votes sent in parallel. Business Logic (coming next)
 17. **Exposed debug pages, admin consoles, `.git` folders, backups and verbose errors.** Recon & Configuration (coming next)
 
